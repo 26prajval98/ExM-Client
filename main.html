@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<meta 
+     name='viewport' 
+     content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' 
+/>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="stylesheets/custom.css">
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+
+<!--Required Fonts-->
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
+
+<style>
+    *{
+        font-family: Arial, Helvetica, sans-serif; 
+    }
+    .unchecked{
+        color:black;
+    }
+    .checked{
+        color: yellow;
+    }
+</style>
+</head>
+
+<body>
+    <div class="w3-container" id="main" style="padding:0px!important">
+        <div class="w3-container w3-center" style="min-height:10vh; position:relative;">
+            <h1 style="font-family: 'Lobster', cursive;" class="w3-hide-large">ExM</h1>
+            <h1 style="font-family: 'Lobster', cursive;" class="w3-hide-small w3-hide-medium">ExM: Save Your Future</h1>
+            <div class="w3-display-container" style="position:absolute; top:0px; left:0px; width:100px; height:100%;" v-if="!login">          
+                <button class="w3-btn w3-display-middle" @click="showMenu"> <i class="fa fa-bars w3-large" aria-hidden="true"></i>
+            </div>
+        </div>
+        
+        <div class="w3-modal w3-animate-opacity w3-show" v-if="showNav">
+            <div class="w3-modal-content w3-card-4 w3-bar-block w3-center" @click="closeMenu" >
+                <button class="w3-bar-item w3-button w3-green w3-xxlarge" style="width:100%">Close X</button>
+                <router-link class="w3-bar-item w3-button" to="/">Home</router-link>
+                <router-link class="w3-bar-item w3-button" to="/user">User Settings</router-link>
+                <router-link class="w3-bar-item w3-button" to="/exp">Expenditure</router-link>
+                <router-link class="w3-bar-item w3-button" to="/savings">Savings</router-link>
+                <router-link class="w3-bar-item w3-button" to="/toDo">To-Do</router-link>
+                <router-link class="w3-bar-item w3-button" to="/toBuy">To-Buy</router-link>
+                <router-link class="w3-bar-item w3-button" to="/feedback">Feedback</router-link>
+            </div>    
+        </div>
+        
+        <div class="w3-center w3-column">
+           <noscript class="w3-red w3-jumbo">Enable JavaScript to Access Contents</noscript>
+        </div>
+        <div>
+            <router-view v-if="!login"></router-view>
+        </div>
+        <login v-if="login"></login>
+    </div>
+    <script src="javascripts/main.js"></script>
+</body>
+</html>
