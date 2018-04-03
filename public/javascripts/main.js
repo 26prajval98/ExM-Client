@@ -11,7 +11,7 @@ var HTTP = axios.create({
 })
 
 var getSavings = ()=>{
-    HTTP.get('Fsavings',{
+    HTTP.get('savings',{
         headers: {
             'Authorization': 'Bearer '+ TOKEN
         }
@@ -146,7 +146,7 @@ user = {
                     </div>
                     <div :class="{'w3-container': true, 'w3-bar-item': true, 'w3-button': true, 'w3-border-bottom': true, 'w3-black': pf, 'w3-padding-32': !pf}" @click="showPf" style="width:100%">Change profile picture</div>
                     <div class="w3-container w3-padding-32" v-if="pf">
-                        <form >
+                        <form @submit.prevent>
                             <div v-if="!image">
                                 <label style="cursor:pointer" for="file">Select an image</label>
                                 <input type="file" ref="file" @change="onFileChange" id="file" style="display:none">
@@ -222,6 +222,7 @@ user = {
         logout(){
             TOKEN = '';
             Event.$emit('logged-in');
+            location.reload();
         },
         update(){
             HTTP.post('/users/update',
@@ -263,6 +264,7 @@ user = {
         },
         submit(){
             updateSavings(this.SOTW);
+            SAVED = this.SOTW;
             this.SOTW = '';
         }
       }
@@ -498,9 +500,9 @@ exp = {
                 return true;
             }
             return false;
-        },
+        },  
         priceProb(){
-            if(this.Price>SAVED||!SAVED)
+            if(parseInt(this.Price)>parseInt(SAVED)||!SAVED)
                 return true;
             else
                 return false;
