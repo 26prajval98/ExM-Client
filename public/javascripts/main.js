@@ -2,7 +2,8 @@ var TOKEN = '';
 var USERINFO = {};
 var SAVINGS = {};
 var SAVED = '';
-var URL =  'https://localhost:8000/';
+var URL = 'https://192.168.43.26:8000/'
+// var URL =  'https://localhost:8000/';
 var EXPENDITURE = [];
 //Axios
 
